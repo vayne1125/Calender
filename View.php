@@ -14,21 +14,27 @@
         document.getElementById("dateForm").submit();
     }
     function del(id){
-        var myId = "myForm" + id.toString(10);
-        document.getElementById(myId).action = "Delete.php";       
-        document.getElementById(myId).submit();
+        var yes = confirm('確定要刪除嗎？');
+        if (yes) {
+            var myId = "myForm" + id.toString(10);
+            document.getElementById(myId).action = "Delete.php";       
+            document.getElementById(myId).submit();
+        }
     }
     function edit(id){
         var myId = "myForm" + id.toString(10);
         document.getElementById(myId).action = "Edit.php";       
         document.getElementById(myId).submit();
     }
-    function addEvent(id){
-        var myId = "myForm" + id.toString(10);
-        document.getElementById(myId).action = "AddEvent.php";       
-        document.getElementById(myId).submit();
+    function addEvent(id){      
+        document.getElementById("addEventForm").submit();
     }
-
+    function showModal(){
+        document.getElementById("infoModal").showModal();   
+    }
+    function closeModal(){
+        document.getElementById("infoModal").close();
+    }
 </script>
 
 <head>
@@ -37,10 +43,25 @@
 </head>
 
 <body>
+    <!-- 日期 -->    
     <form action="View.php" id = "dateForm" method="post">
         <input type="hidden" name="user_id" value="<?=$user_id?>">
         <input type="date" name="date" id="date" onchange='chooseDate()' value="<?=$_POST["date"]?>">
     </form>
+
+    <!-- 彈窗 -->
+    <button onclick="showModal()">add</button>
+    <dialog id="infoModal">
+        <form action="AddEvent.php" id = "addEventForm" method="post">
+            <input type="hidden" name="user_id" value="<?=$user_id?>">
+            <input type="hidden" name="date" value="<?=$_POST["date"]?>">
+            活動: <input type="text" name="item">
+            開始時間:<input type="text" name="start_time">
+        </form>
+        <button id="addEventBtn" onclick="addEvent()">add</button>
+        <button onclick="closeModal()">返回</button>
+    </dialog>
+        
     <?php
     //如果有新的日期就更新日期 沒有的話顯示原本的
     if (isset($_POST["date"])) {
