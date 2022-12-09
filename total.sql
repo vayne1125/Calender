@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-12-07 17:31:40
+-- 產生時間： 2022-12-09 14:57:33
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 8.1.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `total` (
-  `event_id` int(10) NOT NULL,
+  `event_id` bigint(20) NOT NULL,
   `date` date NOT NULL,
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -38,8 +38,10 @@ CREATE TABLE `total` (
 --
 
 INSERT INTO `total` (`event_id`, `date`, `user_id`) VALUES
-(0, '2022-12-07', 1),
-(1, '2022-12-07', 1);
+(1670590187458, '2022-12-10', 1),
+(1670592011167, '2022-12-07', 1),
+(1670592018772, '2022-12-07', 1),
+(1670592031140, '2022-12-07', 1);
 
 --
 -- 已傾印資料表的索引
@@ -49,7 +51,7 @@ INSERT INTO `total` (`event_id`, `date`, `user_id`) VALUES
 -- 資料表索引 `total`
 --
 ALTER TABLE `total`
-  ADD PRIMARY KEY (`event_id`,`user_id`),
+  ADD PRIMARY KEY (`event_id`),
   ADD KEY `total_ibfk_2` (`user_id`);
 
 --
@@ -60,8 +62,8 @@ ALTER TABLE `total`
 -- 資料表的限制式 `total`
 --
 ALTER TABLE `total`
-  ADD CONSTRAINT `total_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `total_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `total_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `total_ibfk_3` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

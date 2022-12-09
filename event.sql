@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2022-12-07 17:32:46
+-- 產生時間： 2022-12-09 14:57:26
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 8.1.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `event` (
-  `event_id` int(10) NOT NULL,
+  `event_id` bigint(20) NOT NULL,
   `item` varchar(20) NOT NULL,
   `start_time` time NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 0
@@ -39,8 +39,10 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`event_id`, `item`, `start_time`, `status`) VALUES
-(0, '跑步', '11:15:00', 0),
-(1, '走路', '11:56:00', 0);
+(1670590187458, '走走', '00:00:00', 1),
+(1670592011167, '唱歌', '12:00:00', 0),
+(1670592018772, '吃飯', '00:00:00', 0),
+(1670592031140, '出去玩', '11:00:00', 0);
 
 --
 -- 已傾印資料表的索引
