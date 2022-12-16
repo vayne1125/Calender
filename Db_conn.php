@@ -1,10 +1,10 @@
 <?php
     $user = 'root';
-    $password = '51318862';
+    $password = '00957025';
     try{
         $db = new PDO(
             'mysql:host=localhost;
-             dbname=calender;
+             dbname=test;
              charset=utf8',$user,$password);
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db -> setAttribute(PDO::ATTR_EMULATE_PREPARES,false);       
