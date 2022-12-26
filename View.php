@@ -1,10 +1,23 @@
 <?php
     include_once "Db_conn.php";
+    session_start();
+    // print(session_id());
+    // print("   " . $_SESSION['user_id']);
     $user_id = $_POST["user_id"];
 ?>
 <html>
 
 <script>
+    //設定資料
+    function Pk_test(){
+        document.getElementById("otherForm").action = './PK_test.php';
+        document.getElementById("otherForm").submit();
+    }
+    //設定個人資料
+    function setPersonalData(){     
+        document.getElementById("otherForm").action = './Setting.php';
+        document.getElementById("otherForm").submit();
+    }
     //更改狀態
     function changeStatus(id){
         var myId = "myForm" + id.toString(10);
@@ -86,7 +99,7 @@
             width: 150px;
             margin: 1px;
         }
-        
+
         .colorBtn{
             background-image:linear-gradient(to bottom,  #9FB5C3, #ffff);
             border-radius: 12px;
@@ -104,31 +117,46 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active"></a>
+                </li>
+
+                <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link active">Daily</a>
                 </li>
+
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" onclick='setPersonalData()'>Setting</a>
+                </li>
+
                 <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown
+                    More
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <!-- <li><a class="dropdown-item">Daily</a></li> -->
+                    <li><a class="dropdown-item" onclick='Pk_test()'>PK-test</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><a class="dropdown-item" href="./Logout.php">Logout</a></li>
                 </ul>
                 </li>
+                
                 <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
+                <a class="nav-link disabled">comming soon</a>
                 </li>
+
             </ul>
+            <!--
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            -->
             </div>
         </div>
     </nav>
@@ -143,6 +171,12 @@
         <input type="hidden" name="user_id" value="<?=$user_id?>">
         <input type="hidden" name="date" value="<?=$_POST["date"]?>">
         <input type='checkbox' onclick='changeView()'>未完成事項   
+    </form>
+
+    <!-- 設定跳轉 -->
+    <form action = "setting.php" id = "otherForm" method = "post">
+        <input type="hidden" name="user_id" value="<?=$user_id?>">
+        <input type="hidden" name="date" value="<?=$_POST["date"]?>"> 
     </form>
 
     <!-- 彈窗 add-->
@@ -223,6 +257,7 @@
             echo "</ul></form>";
             echo "</table";
         }
+
     }
     ?>
 </body>

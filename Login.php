@@ -1,5 +1,32 @@
 <?php
-include_once "db_conn.php";
+	include_once "db_conn.php";
+	session_start();
+	try {
+		if (isset($_SESSION['user_id'])) {
+			echo "<form id = 'myForm' action = 'View.php' method = 'post'>";
+			echo "<input type='hidden' name = 'user_id' value='" . $_SESSION['user_id'] . "'>";
+			echo "<input type='hidden' name = 'date' id = 'date'>";
+			echo "</form>";
+			echo "<script type='text/javascript'> 
+					let d = new Date();
+					let year = d.getFullYear();
+					let mon = d.getMonth() + 1;
+					let day = d.getDate();
+					if(day < 10) day = '0' + day;
+					if(mon < 10) mon = '0' + mon;
+					let rt = '';
+					rt = year + '-' + mon + '-' + day;
+					document.getElementById('date').value = rt; 
+					document.getElementById('myForm').submit(); 
+				</script>";
+		}
+		// } else {
+		// 	echo "<script type='text/javascript'>alert('無法預知的錯誤，請重試');</script>";
+		// }
+		//print(session_id());
+	}catch(PDOException $e){
+		print $e;
+	}
 ?>
 <html>
 
@@ -183,6 +210,12 @@ include_once "db_conn.php";
         $result = $stmt->fetchAll();
         if ($result[0]['password'] == $password){          
             try {                
+				//用session記錄使用者
+				//$_SESSION['user_id'] = 1;
+				$_SESSION['user_id'] = $result[0]['user_id'];
+
+				//echo "<script type='text/javascript'>alert(" . $_SESSION['user_id'] . ");</script>";
+
                 //登陸成功就跳到view.php(用post傳參數) 日期預設今天!
                 echo "<form id = 'myForm' action = 'View.php' method = 'post'>";
                 echo "<input type='hidden' name = 'user_id' value='" . $result[0]['user_id'] . "'>";
