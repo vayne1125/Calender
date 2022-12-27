@@ -245,7 +245,7 @@
             echo "<ul class='list-group list-group-horizontal justify-content-center' >";
             echo "<li class='list-group-item '><div onclick='del(this.id)' id = '".$i."' class='colorBtn'>刪除</div></li>";
             echo "<li class='list-group-item '>" . $result[$i]['item'] . "</li>";
-            echo "<li class='list-group-item '>" . $result[$i]['start_time'] . "</li>";
+            echo "<li class='list-group-item '>" . substr($result[$i]['start_time'],0,5) . "</li>";
             //判斷當前狀態，是否完成，是的話就打勾
             if($result[$i]['status'] == true){
                 echo "<li class='list-group-item'><input type='checkbox' name='status' id ='".$i."'checked onclick='changeStatus(this.id)'></li>";
