@@ -5,18 +5,8 @@
 		if (isset($_SESSION['user_id'])) {
 			echo "<form id = 'myForm' action = 'View.php' method = 'post'>";
 			echo "<input type='hidden' name = 'user_id' value='" . $_SESSION['user_id'] . "'>";
-			echo "<input type='hidden' name = 'date' id = 'date'>";
 			echo "</form>";
 			echo "<script type='text/javascript'> 
-					let d = new Date();
-					let year = d.getFullYear();
-					let mon = d.getMonth() + 1;
-					let day = d.getDate();
-					if(day < 10) day = '0' + day;
-					if(mon < 10) mon = '0' + mon;
-					let rt = '';
-					rt = year + '-' + mon + '-' + day;
-					document.getElementById('date').value = rt; 
 					document.getElementById('myForm').submit(); 
 				</script>";
 		}
@@ -92,7 +82,7 @@
 		height: 50px;
 		background: #fff;
 		font-size: 10pt;
-		text-transform: capitalize;
+		/*text-transform: capitalize;*/
 		padding-left: 20px;
 		color: rgba(0, 0, 0, 0.1);
 		-webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
@@ -188,17 +178,19 @@
 </head>
 
 <body>
-    <form action="Login.php" class="login" method="post">
+	<form action="Login.php" class="login" method="post">
 	<div class="form-group">
         <input type="text" class="account" name="account" placeholder="輸入您的帳號"><br>
         <input type="password" class="password" name="password" placeholder="輸入您的密碼"><br>
+		<!-- todo back css -->
+		<input type="submit" value="back" formaction="./Index.php">
 		<input type="submit" class="button" value="Enter">
     </div>
 		<input type="button" class="btn" value="登入 Login">
     </form>
 	
     <?php
-    if (isset($_POST["account"])) {
+    if (isset($_POST["account"]) && isset($_POST["password"]) && strlen($_POST["account"]) > 0 && strlen($_POST["password"]) > 0 ) {
         $account = $_POST["account"];
         $password = $_POST["password"];
 
@@ -211,37 +203,24 @@
         if ($result[0]['password'] == $password){          
             try {                
 				//用session記錄使用者
-				//$_SESSION['user_id'] = 1;
 				$_SESSION['user_id'] = $result[0]['user_id'];
-
-				//echo "<script type='text/javascript'>alert(" . $_SESSION['user_id'] . ");</script>";
-
                 //登陸成功就跳到view.php(用post傳參數) 日期預設今天!
                 echo "<form id = 'myForm' action = 'View.php' method = 'post'>";
                 echo "<input type='hidden' name = 'user_id' value='" . $result[0]['user_id'] . "'>";
-                echo "<input type='hidden' name = 'date' id = 'date'>";
                 echo "</form>";
                 echo "<script type='text/javascript'> 
-                        let d = new Date();
-                        let year = d.getFullYear();
-                        let mon = d.getMonth() + 1;
-                        let day = d.getDate();
-                        if(day < 10) day = '0' + day;
-                        if(mon < 10) mon = '0' + mon;
-                        let rt = '';
-                        rt = year + '-' + mon + '-' + day;
-                        document.getElementById('date').value = rt; 
                         document.getElementById('myForm').submit(); 
                       </script>";              
                 //header("Location:view.php?uid=".$result[0]['user_id']);          
             } catch (PDOException $e) {
-                //print $e;
                 echo "<script type='text/javascript'>alert('無法預知的錯誤，請重試');</script>";
             }
         } else {
             echo "<script type='text/javascript'>alert('帳號或密碼錯誤');</script>";
         }
-    }
+    }else if(isset($_POST["account"]) && isset($_POST["password"]) && (strlen($_POST["password"]) == 0 || strlen($_POST["password"]) == 0) ){
+		echo "<script type='text/javascript'>alert('帳號或密碼不得為空');</script>";
+	}
     ?>
 	<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>

@@ -2,7 +2,6 @@
 session_start();   
 include_once "db_conn.php";
 $user_id = $_POST["user_id"];
-$date = $_POST["date"];
 ?>
 <html>
 
@@ -15,7 +14,6 @@ $date = $_POST["date"];
     <form action="setting.php" method="post">
         
         <input type="hidden" name="user_id" value="<?=$user_id?>">
-        <input type="hidden" name="date" value="<?=$date?>">
         舊的密碼:<input type="text" name="oldPassword"><br>
         新的密碼:<input type="password" name="newPassword"><br>
         <input type="submit" value="修改">

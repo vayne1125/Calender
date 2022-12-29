@@ -100,6 +100,7 @@ include_once "db_conn.php";
 		<form action="Sign.php" method="post">
 			<p id="act">帳號:<input class="act" type="text" name="account"></p>
 			<p id="pwd">密碼:<input class="pwd" type="password" name="password"></p>
+			<input class="sbt" type="submit" value="back" formaction="./Index.php">
 			<input class="sbt" type="submit" value="sign">
 		</form>
 
@@ -125,12 +126,11 @@ include_once "db_conn.php";
             print "帳號已存在! 請重新輸入!";
         } else if ($result == false) {          
             try {
-                $sql = "select count(*) as cnt
-                        from user";
+                $sql = "select getid() as cnt;";
                 $stmt = $db -> prepare($sql);
                 $stmt -> execute();
                 $result = $stmt->fetchAll();
-
+				
                 $sql = ("insert into user values(?,?,?)");
                 $stmt = $db->prepare($sql);
                 $stmt->execute(array($account, $password, $result[0]['cnt']));
