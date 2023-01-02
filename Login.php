@@ -129,12 +129,27 @@
 		transition: 0.5s;
 	}
 	
-	.button {
+	.buttonE {
 		margin-top: 20%;
 		z-index: 1;
 		font-size: 16pt;
 		text-align: center;
-		margin-left:340px;
+		margin-left:10px;
+		border: 2px #BFCDD4 dashed;
+		background:#8A9DA8;
+		-webkit-transition: 0.5s;
+		-moz-transition: 0.5s;
+		-ms-transition: 0.5s;
+		-o-transition: 0.5s;
+		transition: 0.5s;
+	}
+	
+	.buttonB {
+		margin-top: 20%;
+		z-index: 1;
+		font-size: 16pt;
+		text-align: center;
+		margin-left:270px;
 		border: 2px #BFCDD4 dashed;
 		background:#8A9DA8;
 		-webkit-transition: 0.5s;
@@ -183,8 +198,8 @@
         <input type="text" class="account" name="account" placeholder="輸入您的帳號"><br>
         <input type="password" class="password" name="password" placeholder="輸入您的密碼"><br>
 		<!-- todo back css -->
-		<input type="submit" value="back" formaction="./Index.php">
-		<input type="submit" class="button" value="Enter">
+		<input type="submit" value="Back" class="buttonB" formaction="./Index.php">
+		<input type="submit" class="buttonE" value="Enter">
     </div>
 		<input type="button" class="btn" value="登入 Login">
     </form>
