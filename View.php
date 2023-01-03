@@ -339,5 +339,9 @@
             //echo "</table>";
         }
     ?>
+    <div class="center" style="text-align:center;">
+        <br>
+        <button onclick="showModal()" class="colorBtn">Add</button>
+    </div>
 </body>
 <html>
