@@ -138,9 +138,8 @@
             text-align:center;
             float:left;
             width: 150px;
-            margin: 1px;
+            margin-bottom: 1px;
         }
-
         .colorBtn{
             background-image:linear-gradient(to bottom,  #9FB5C3, #ffff);
             border-radius: 12px;
@@ -285,7 +284,7 @@
                 <li class='list-group-item' style='background-color:#D6EAF8'>是否完成</li>
                 <li class='list-group-item' style='background-color:#D6EAF8'></li>
             </ul>";
-        echo "<table border='1'>";
+        //echo "<table border='1'>";
     
         if($viewType == "all"){
             $sql = ("select item,start_time,status,event.event_id,type
@@ -313,7 +312,7 @@
         //將表格打印出來
         for ($i = 0; $i < count($result); $i++) {
             //建立一個表單
-            echo "<form id = 'myForm".$i."' action='' method='post'>";
+            echo "<form id = 'myForm".$i."' action='' method='post' style='margin-bottom:1px;'>";
             //作為傳參用，不顯示在畫面上
             echo "<input type='hidden' name = 'date' value='" . $date . "'>";
             echo "<input type='hidden' name = 'user_id' value='" . $user_id . "'>";
@@ -337,7 +336,7 @@
             //echo "<li>" . $result[$i]['status'] . "</li>";
             echo "<li class='list-group-item'><div onclick='showModalEdit(this.id)' id = '".$i."' class='colorBtn'>編輯</div></li>";
             echo "</ul></form>";
-            echo "</table>";
+            //echo "</table>";
         }
     ?>
 </body>

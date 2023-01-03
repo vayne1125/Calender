@@ -230,7 +230,7 @@ CREATE TABLE `workview` (
 --
 DROP TABLE IF EXISTS `funview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `funview`  AS SELECT `event`.`item` AS `item`, `event`.`start_time` AS `start_time`, `event`.`status` AS `status`, `total`.`user_id` AS `user_id`, `event`.`event_id` AS `event_id`, `event`.`type` AS `type`, `total`.`date` AS `date` FROM (`event` join `total`) WHERE `event`.`event_id` = `total`.`event_id` AND `event`.`type` = '娛樂''娛樂'  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `funview`  AS SELECT `event`.`item` AS `item`, `event`.`start_time` AS `start_time`, `event`.`status` AS `status`, `total`.`user_id` AS `user_id`, `event`.`event_id` AS `event_id`, `event`.`type` AS `type`, `total`.`date` AS `date` FROM (`event` join `total`) WHERE `event`.`event_id` = `total`.`event_id` AND `event`.`type` = '娛樂'  ;
 
 -- --------------------------------------------------------
 
@@ -239,7 +239,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `undoitemview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `undoitemview`  AS SELECT `total`.`user_id` AS `user_id`, `total`.`date` AS `date`, `event`.`item` AS `item`, `event`.`start_time` AS `start_time`, `event`.`type` AS `type` FROM (`total` join `event`) WHERE `event`.`status` = 0 AND `total`.`event_id` = `event`.`event_id``event_id`  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `undoitemview`  AS SELECT `total`.`user_id` AS `user_id`, `total`.`date` AS `date`, `event`.`item` AS `item`, `event`.`start_time` AS `start_time`, `event`.`type` AS `type` FROM (`total` join `event`) WHERE `event`.`status` = 0 AND `total`.`event_id` = `event`.`event_id`  ;
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `workview`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `workview`  AS SELECT `event`.`item` AS `item`, `event`.`start_time` AS `start_time`, `event`.`status` AS `status`, `total`.`user_id` AS `user_id`, `event`.`event_id` AS `event_id`, `event`.`type` AS `type`, `total`.`date` AS `date` FROM (`event` join `total`) WHERE `event`.`event_id` = `total`.`event_id` AND `event`.`type` = '工作''工作'  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `workview`  AS SELECT `event`.`item` AS `item`, `event`.`start_time` AS `start_time`, `event`.`status` AS `status`, `total`.`user_id` AS `user_id`, `event`.`event_id` AS `event_id`, `event`.`type` AS `type`, `total`.`date` AS `date` FROM (`event` join `total`) WHERE `event`.`event_id` = `total`.`event_id` AND `event`.`type` = '工作'  ;
 
 --
 -- 已傾印資料表的索引
