@@ -46,7 +46,7 @@ $user_id = $_POST["user_id"];
 			font-weight: 700;
 			letter-spacing: 7px;
 			text-align: center;
-			text-transform: uppercase;
+			/*text-transform: uppercase;*/
 		}
 		.underline {
 			border-bottom: solid 2px #474544;
@@ -64,7 +64,7 @@ $user_id = $_POST["user_id"];
 			letter-spacing: 1px;
 			margin: 0em 0 1.875em 0;
 			padding: 0 0 0.875em 0;
-			text-transform: uppercase;
+			/*text-transform: uppercase;*/
 			width: 100%;
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
@@ -110,7 +110,7 @@ $user_id = $_POST["user_id"];
 			font-weight: bold;
 			outline: none;
 			padding: 20px 35px;
-			text-transform: uppercase;
+			/*text-transform: uppercase;*/
 			-webkit-transition: all 0.3s;
 			-moz-transition: all 0.3s;
 			-ms-transition: all 0.3s;
@@ -129,7 +129,7 @@ $user_id = $_POST["user_id"];
 			font-weight: bold;
 			outline: none;
 			padding: 20px 35px;
-			text-transform: uppercase;
+			/*text-transform: uppercase;*/
 			-webkit-transition: all 0.3s;
 			-moz-transition: all 0.3s;
 			-ms-transition: all 0.3s;
@@ -157,11 +157,12 @@ $user_id = $_POST["user_id"];
 			<input type="submit" class="buttonM" value="修改">
 			<input type="submit" class="buttonB" value="返回" formaction="./view.php">
 		</form>
+		<h3 id = "msg" style="text-align: center;"></h3>
 	</div>
-    <div id = "msg"></div>
+    
 
     <?php
-    if (isset($_POST["newPassword"])) {
+    if (isset($_POST["newPassword"]) && isset($_POST["oldPassword"])) {
 
         $oldPassword = $_POST["oldPassword"];
         
