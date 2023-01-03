@@ -2,7 +2,31 @@
 include_once "db_conn.php";
 ?>
 <html>
-
+<script>
+	function loadXMLDoc(isOk)
+	{
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{
+			// IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{
+			// IE6, IE5 浏览器执行代码
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function()
+		{		
+			if(isOk == true)
+				document.getElementById("myDiv").innerHTML="新增成功!";
+			else 
+				document.getElementById("myDiv").innerHTML="pk重複!";	
+		}
+		xmlhttp.open("GET","PK_test.php",true);
+		xmlhttp.send();
+	}
+	</script>
 <head>
     <meta http-equiv="Content-type" content="text/html" ; charset="utf-8">
     <meta http-equiv="Pragma" content="No-cache">
@@ -117,18 +141,19 @@ include_once "db_conn.php";
         <input type="text" placeholder="input pk" class="name" name="pk">
         <input type="submit" class="buttonA" value="✚"><br>
     </form>
+	<div id = "myDiv"></div>
 </div>
     <?php
     if (isset($_POST["pk"])) {
         $pk = $_POST["pk"];
-
             try {
                 $sql = ("insert into pk_table values(?)");
                 $stmt = $db->prepare($sql);
-                $stmt->execute(array($pk));        
+                $stmt->execute(array($pk));       
+				echo "<script type='text/javascript'>loadXMLDoc(true)</script>";
             } catch (PDOException $e) {
                 //print $e;
-                echo "<script type='text/javascript'>alert('pk重複!');</script>";
+                echo "<script type='text/javascript'>loadXMLDoc(false)</script>";
             }
     }
     ?>
