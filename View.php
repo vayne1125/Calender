@@ -234,7 +234,7 @@
     </form>
 
     <!-- 彈窗 add-->
-    //<button onclick="showModal()" class="colorBtn">Add</button>
+    <!--<button onclick="showModal()" class="colorBtn">Add</button>-->
     <dialog id="infoModal" style="background-color:#d6ddd9">
         <form action="AddEvent.php" id = "addEventForm" method="post">
             <input type="hidden" name="user_id" value="<?=$user_id?>">
