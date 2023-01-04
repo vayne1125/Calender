@@ -234,7 +234,7 @@
     </form>
 
     <!-- 彈窗 add-->
-    <button onclick="showModal()" class="colorBtn">Add</button>
+    //<button onclick="showModal()" class="colorBtn">Add</button>
     <dialog id="infoModal" style="background-color:#d6ddd9">
         <form action="AddEvent.php" id = "addEventForm" method="post">
             <input type="hidden" name="user_id" value="<?=$user_id?>">
@@ -277,7 +277,7 @@
     //更新日期      
         //echo "<h2>" . $date . "</h2>"; 這一行可以顯示日期
         echo "
-            <ul class='list-group list-group-horizontal justify-content-center' >
+            <ul class='list-group list-group-horizontal justify-content-center flex-fill' >
                 <li class='list-group-item' style='background-color:#D6EAF8'></li>
                 <li class='list-group-item' style='background-color:#D6EAF8'>活動</li>
                 <li class='list-group-item' style='background-color:#D6EAF8'>時間</li>
@@ -323,7 +323,7 @@
             echo "<input id = 'event_id".$i."' type='hidden' name = 'event_id' value='" . $result[$i]['event_id'] . "'>";
             echo "<input id = 'type".$i."' type='hidden' name = 'type' value='" . $result[$i]['type'] . "'>";
             //一列 刪除和編輯會跳到對應的php
-            echo "<ul class='list-group list-group-horizontal justify-content-center' >";
+            echo "<ul class='list-group list-group-horizontal justify-content-center flex-fill' >";
             echo "<li class='list-group-item '><div onclick='del(this.id)' id = '".$i."' class='colorBtn'>刪除</div></li>";
             echo "<li class='list-group-item '>" . $result[$i]['item'] . "</li>";
             echo "<li class='list-group-item '>" . substr($result[$i]['start_time'],0,5) . "</li>";
@@ -339,5 +339,9 @@
             //echo "</table>";
         }
     ?>
+    <div class="center" style="text-align:center;">
+        <br>
+        <button onclick="showModal()" class="colorBtn">Add</button>
+    </div>
 </body>
 <html>
