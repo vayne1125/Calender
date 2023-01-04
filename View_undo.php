@@ -166,8 +166,9 @@
         //echo "<h2>" . $date . "</h2>"; 這一行可以顯示日期
 
         $sql = ("select count(*) as cnt
-                from undoitemView
-                where user_id = ? and date = ?;
+                from event
+                where status = 0 and event_id in 
+                    (select event_id from total where user_id = (?) and date = (?));
                 ");
         $stmt = $db->prepare($sql);
         $stmt->execute(array($user_id, $date));
